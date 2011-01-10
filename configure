@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby
+#!env ruby
 
 if ENV["RUBYLIB"]
   STDERR.puts "ERROR: Please unset RUBYLIB to configure Rubinius"
@@ -604,7 +604,7 @@ class Configure
         libs = link_libs.map { |l| "-l#{l}" }.join(" ")
       end
 
-      cmd = "#{@cxx} #{env('CFLAGS')} -lstdc++ -lm #{libs} -o #{basename} #{source} >>#{@log.path} 2>&1"
+      cmd = "#{@cxx} #{env('CFLAGS')} -lstdc++ #{libs} -o #{basename} #{source} >>#{@log.path} 2>&1"
       @log.log cmd
       system cmd
       return $?.exitstatus unless run
