@@ -815,7 +815,7 @@ namespace rubinius {
   }
 
   Object* Bignum::compare(STATE, Float* b) {
-    if(std::isinf(b->val)) {
+    if(isinf(b->val)) {
       if(b->val > 0) {
         return Fixnum::from(-1);
       } else {
@@ -1159,7 +1159,7 @@ namespace rubinius {
       res = (res * (double)DIGIT_RADIX) + DIGIT(a,i);
     }
 
-    if(std::isinf(res)) {
+    if(isinf(res)) {
       /* Bignum out of range */
       res = HUGE_VAL;
     }
@@ -1182,9 +1182,9 @@ namespace rubinius {
 
     value = (d < 0) ? -d : d;
 
-    if(std::isinf(d)) {
+    if(isinf(d)) {
       Exception::float_domain_error(state, d < 0 ? "-Infinity" : "Infinity");
-    } else if(std::isnan(d)) {
+    } else if(isnan(d)) {
       Exception::float_domain_error(state, "NaN");
     }
 
